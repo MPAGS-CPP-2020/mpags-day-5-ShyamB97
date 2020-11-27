@@ -12,6 +12,7 @@
 #include "CaesarCipher.hpp"
 #include "PlayfairCipher.hpp"
 #include "VigenereCipher.hpp"
+#include "CipherFactory.hpp"
 
 // Main function of the mpags-cipher program
 int main(int argc, char* argv[])
@@ -101,8 +102,7 @@ int main(int argc, char* argv[])
     }
   }
 
-  std::string outputText {""};
-
+  /*std::string outputText {""};
   switch ( settings.cipherType ) {
     case CipherType::Caesar :
     {
@@ -123,7 +123,10 @@ int main(int argc, char* argv[])
       outputText = cipher.applyCipher( inputText, settings.cipherMode );
       break;
     }
-  }
+  }*/
+
+  auto aCipher = cipherFactory(settings.cipherType, settings.cipherKey);
+  std::string outputText {aCipher->applyCipher(inputText, settings.cipherMode)};
 
   // Output the transliterated text
   if (!settings.outputFile.empty()) {

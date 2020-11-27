@@ -42,19 +42,19 @@ void VigenereCipher::setKey(const std::string& key)
     }
 }
 
-std::string VigenereCipher::applyCipher(const std::string& inputText, const CipherMode& cipherMode) const
+std::string VigenereCipher::applyCipher(const std::string& input, const CipherMode mode) const
 {
     std::string outputText = "";
-    for(size_t i = 0; i < inputText.size(); i++)
+    for(size_t i = 0; i < input.size(); i++)
     {
         // get the relevant CaesarCipher class and truncate the key
         CaesarCipher caesarCipher = _charLookUp.at(_key[i%_key.size()]);
         
         // convert char to string
-        std::string letter(1, inputText[i]);
+        std::string letter(1, input[i]);
         
         // apply CaesarCipher to the character, using relevant mode and add the output to the output text
-        outputText += caesarCipher.applyCipher(letter, cipherMode);
+        outputText += caesarCipher.applyCipher(letter, mode);
     }
     
     return outputText;

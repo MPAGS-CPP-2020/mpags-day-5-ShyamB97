@@ -6,6 +6,7 @@
 
 #include "CipherMode.hpp"
 #include "CaesarCipher.hpp"
+#include "Cipher.hpp"
 
 /**
  * \file VigenereCipher.hpp
@@ -16,7 +17,7 @@
  * \class VigenereCipher
  * \brief Encrypt or decrypt text using the Vigenere cipher with the given key
  */
-class VigenereCipher
+class VigenereCipher : public Cipher
 {
 private:
     /// The cipher key, essentially each letter represents the amount to shift a corresponding input letter by.
@@ -48,9 +49,8 @@ public:
      * \param cipherMode whether to encrypt or decrypt the input text
      * \return the result of applying the cipher to the input text
      */
-    std::string applyCipher(const std::string& inputText, const CipherMode& cipherMode) const;
+    std::string applyCipher(const std::string& input, const CipherMode mode) const override;
 };
-
 
 
 #endif
