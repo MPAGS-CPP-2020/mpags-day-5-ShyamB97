@@ -94,9 +94,15 @@ bool processCommandLine(const std::vector<std::string>& args,
         // Got the key, so assign the value and advance past it
 	if ( args[i+1] == "caesar" ) {
 	  settings.cipherType = CipherType::Caesar;
-	} else if ( args[i+1] == "playfair" ) {
+	} 
+  else if ( args[i+1] == "playfair" ) {
 	  settings.cipherType = CipherType::Playfair;
-	} else {
+	}
+  else if (args[i+1] == "vigenere")
+  {
+    settings.cipherType = CipherType::Vigenere;
+  }
+  else {
 	  std::cerr << "[error] unknown cipher '" << args[i+1] << "'\n";
 	  processStatus = false;
 	  break;
